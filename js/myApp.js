@@ -107,6 +107,7 @@ var handlers = {
     newGame: function(){
         for (let i = 0; i < 9; i++){
             game.tiles[i].empty = true;
+            document.getElementById(i).value = '';
         }
         game.moves = 0;
         game.gameHasStarted = true;
@@ -117,10 +118,19 @@ var handlers = {
             // computers turn 
         }
     },
-    checkThisTile: function(num){
+    checkThisTile: function(num, isPlayer){
         if (!game.tiles[num].empty){
             return; // exit out
         }
-        game.tiles[num].empty = false;
+        game.tiles[num].empty = false; // not empty
+        let marker;
+        if (isPlayer){
+            marker = game.tokenPlayer;
+        }else{
+            marker = game.tokenComp;
+        }
+        document.getElementById(num).value = marker;
+        //console.log(thisTile);
+        //thisTile.value = marker;
     }
 };
