@@ -4,10 +4,55 @@
         <title>Tic Tac Toe</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+    
+    
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <h1>testing<h1>
-    <script src="js/myApp.js"></script>
-    </body>
+
+    <div class="container" >
+  <div class='jumbotron' style='background:#A20932;'>
+  <div class="row" id="title"><h1>TIC-TAC-TOE</h1></div>
+    <div class='row'><h4>A <a href="https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-game" target='_blank'>freeCodeCamp Challenge</a> <br> by Greg Duncan</h4></div>
+  <div class="row" id="row1">
+    <input readonly id="zero"></input>
+    <input readonly id="one"></input>
+    <input readonly id="two"></input>
+  </div>
+  <div class="row" id="row2">
+    <input readonly id="three"></input>
+    <input readonly id="four"></input>
+    <input readonly id="five"></input>
+  </div>
+  <div class="row" id="row3">
+    <input readonly id="six"></input>
+    <input readonly id="seven"></input>
+    <input readonly id="eight"></input>
+  </div>
+  <div>
+    <button class='btn btn-success btn-md' id='playerLetter' data-toggle="tooltip" title="X GOES FIRST" data-placement="bottom">X <i class="fa fa-refresh" aria-hidden="true" ></i> </button>
+    <button class='btn btn-primary btn-md' id="newGame">New Game</button>
+  </div>
+  </div>
+<div id='turns'></div>
+</div>
+<div id="myfooter" class="container-fluid footerclass">
+  <div class="row" style="margin-top:18px;">
+    <p><a href="#"><i class="fa fa-twitter fa-3x"></i></a><a href="https://github.com/GregatGit" target="_blank"><i class="fa fa-github fa-3x"></i></a>
+      <a href="https://www.linkedin.com/pub/greg-duncan/108/199/458" target="_blank"><i class="fa fa-linkedin fa-3x"></i></a><a href="http://www.freecodecamp.com/gregatgit" target="_blank"><i class="fa fa-fire fa-3x" target="_blank"></i></a>
+    </p>
+    <p><a id="email">gregdd@outlook.com</a></p>
+  </div>
+</div>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+
+        <script src="js/myApp.js"></script>
+
+    
+    
+  </body>
 </html>
