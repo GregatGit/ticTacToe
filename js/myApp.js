@@ -16,26 +16,6 @@ Once a tile is used it's index (from 0 - 8) is pushed into tileUsed[]
 the lineIndex property in each of tiles say which line the tile affects
 */
 
-// Variables
-//var tokenPlayer = 'X'; // Player or Computer can change X and O 
-//var tokenComp = 'O';
-//var lineScores = [0, 0, 0, 0, 0, 0, 0, 0]; // read above for lineScores & combos 
-/*var combos =  [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6]
-];
-var tilesUsed = [];
-var turns = 0;
-var whosTurn = "user";
-var shaded = -1; // -1 for blank - 0 to 7 (combos ref) to show which are
-var playerCanMove = true;
-*/
 var game = {
     playerCanMove: false,
     gameHasStarted: false,
@@ -107,6 +87,10 @@ var handlers = {
     newGame: function(){
         for (let i = 0; i < 9; i++){
             game.tiles[i].empty = true;
+            game.tiles[i].XorO = null;
+            if (i < 8){ // only 8 lineScores
+                game.lineScores[i] = 0;
+            }
             document.getElementById(i).value = '';
         }
         game.moves = 0;
@@ -119,7 +103,8 @@ var handlers = {
         }
     },
     checkThisTile: function(num, isPlayer){
-        if (!game.tiles[num].empty){
+        if (isPlayer && game.playerCanMove){
+            if (!game.tiles[num].empty){
             return; // exit out
         }
         game.tiles[num].empty = false; // not empty
@@ -130,7 +115,9 @@ var handlers = {
             marker = game.tokenComp;
         }
         document.getElementById(num).value = marker;
-        //console.log(thisTile);
-        //thisTile.value = marker;
+        game.tiles[i].XorO = marker;
+        //var temp = document.getElementById(num);
+        //console.log(temp);
+        }       
     }
 };
