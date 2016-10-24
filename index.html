@@ -17,24 +17,26 @@
   <div class='jumbotron' style='background:#A20932;'>
   <div class="row" id="title"><h1>TIC-TAC-TOE</h1></div>
     <div class='row'><h4>A <a href="https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-game" target='_blank'>freeCodeCamp Challenge</a> <br> by Greg Duncan</h4></div>
-  <div class="row" id="row1">
-    <input readonly id="zero"></input>
-    <input readonly id="one"></input>
-    <input readonly id="two"></input>
+    <div id="tiles">
+        <div class="row" id="row1">
+    <input readonly id="0" onclick="handlers.checkThisTile(0)"></input>
+    <input readonly id="1"></input>
+    <input readonly id="2"></input>
   </div>
   <div class="row" id="row2">
-    <input readonly id="three"></input>
-    <input readonly id="four"></input>
-    <input readonly id="five"></input>
+    <input readonly id="3"></input>
+    <input readonly id="4"></input>
+    <input readonly id="5"></input>
   </div>
   <div class="row" id="row3">
-    <input readonly id="six"></input>
-    <input readonly id="seven"></input>
-    <input readonly id="eight"></input>
+    <input readonly id="6"></input>
+    <input readonly id="7"></input>
+    <input readonly id="8"></input>
   </div>
+    </div>
   <div>
     <button class='btn btn-success btn-md' id='playerLetter' data-toggle="tooltip" title="X GOES FIRST" data-placement="bottom">X <i class="fa fa-refresh" aria-hidden="true" ></i> </button>
-    <button class='btn btn-primary btn-md' id="newGame">New Game</button>
+    <button class='btn btn-primary btn-md' id="newGame" onclick="handlers.newGame()">New Game</button>
   </div>
   </div>
 <div id='turns'></div>
