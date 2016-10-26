@@ -37,47 +37,47 @@ var game = {
         {
         id: 0,
         empty: true,
-        XorO: null,
+        XorO: false,
         lineIndex: [0, 3, 6]
         }, {
         id: 1,
         empty: true,
-        XorO: null,
+        XorO: false,
         lineIndex: [0, 4]
         }, {
         id: 2,
         empty: true,
-        XorO: null,
+        XorO: false,
         lineIndex: [0, 5, 7]
         }, {
         id: 3,
         empty: true,
-        XorO: null,
+        XorO: false,
         lineIndex: [1, 3]
         }, {
         id: 4,
         empty: true,
-        XorO: null,
+        XorO: false,
         lineIndex: [1, 4, 6, 7]
         }, {
         id: 5,
         empty: true,
-        XorO: null,
+        XorO: false,
         lineIndex: [1, 5]
         }, {
         id: 6,
         empty: true,
-        XorO: null,
+        XorO: false,
         lineIndex: [2, 3, 7]
         }, {
         id: 7,
         empty: true,
-        XorO: null,
+        XorO: false,
         lineIndex: [2, 4]
         }, {
         id: 8,
         empty: true,
-        XorO: null,
+        XorO: false,
         lineIndex: [2, 5, 6]
         }
     ]
@@ -87,7 +87,7 @@ var handlers = {
     newGame: function(){
         for (let i = 0; i < 9; i++){
             game.tiles[i].empty = true;
-            game.tiles[i].XorO = null;
+            //game.tiles[i].XorO = false;
             if (i < 8){ // only 8 lineScores
                 game.lineScores[i] = 0;
             }
@@ -103,10 +103,6 @@ var handlers = {
         }
     },
     checkThisTile: function(num, isPlayer){
-        if (isPlayer && game.playerCanMove){
-            if (!game.tiles[num].empty){
-            return; // exit out
-        }
         game.tiles[num].empty = false; // not empty
         let marker;
         if (isPlayer){
@@ -115,10 +111,10 @@ var handlers = {
             marker = game.tokenComp;
         }
         document.getElementById(num).value = marker;
-        game.tiles[num].XorO = marker;
+        //game.tiles[num].XorO = marker;
         //var temp = document.getElementById(num);
         //console.log(temp);
-        }       
+        //}       
     },
     changeTokens: function(){
         let temp = game.tokenComp;
