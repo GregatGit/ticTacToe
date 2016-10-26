@@ -135,11 +135,7 @@ function computerMoves(){
         game.moves++;
     }
 }
-function addLineScores (arr, isPlayer){
-    let amount = 1;
-    if (isPlayer){
-        amount = 5;
-    }
+function addLineScores (arr, amount){
     arr.forEach(function (index){
         game.lineScores[index] += amount;
     });
