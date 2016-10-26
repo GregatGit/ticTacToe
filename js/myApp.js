@@ -22,6 +22,7 @@ var game = {
     tokenPlayer: 'X ', // Player or Computer can change X and O 
     tokenComp: 'O ',
     moves: 0,
+    centerTileFree: true,
     lineScores : [0, 0, 0, 0, 0, 0, 0, 0], // read above for lineScores & combos
     combos:  [
         [0, 1, 2],
@@ -112,6 +113,10 @@ var handlers = {
                 marker = game.tokenComp;
             }
             document.getElementById(num).value = marker;
+            game.moves++;
+            return true;
+        }else{
+            return false;
         }
               
     },
@@ -122,3 +127,20 @@ var handlers = {
         document.getElementById('XandO').innerText = game.tokenPlayer; 
     }
 };
+
+function computerMoves(){
+    if (game.centerTileFree){
+        game.centerTileFree = false;
+        handlers.checkThisTile(4, false);
+        game.moves++;
+    }
+}
+function addLineScores (arr, isPlayer){
+    let amount = 1;
+    if (isPlayer){
+        amount = 5;
+    }
+    arr.forEach(function (index){
+        game.lineScores[index] += amount;
+    });
+}
