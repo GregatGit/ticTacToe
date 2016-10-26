@@ -103,18 +103,17 @@ var handlers = {
         }
     },
     checkThisTile: function(num, isPlayer){
-        game.tiles[num].empty = false; // not empty
-        let marker;
-        if (isPlayer){
-            marker = game.tokenPlayer;
-        }else{
-            marker = game.tokenComp;
+        if (game.tiles[num].empty){
+            game.tiles[num].empty = false; // not empty
+            let marker;
+            if (isPlayer){
+                marker = game.tokenPlayer;
+            }else{
+                marker = game.tokenComp;
+            }
+            document.getElementById(num).value = marker;
         }
-        document.getElementById(num).value = marker;
-        //game.tiles[num].XorO = marker;
-        //var temp = document.getElementById(num);
-        //console.log(temp);
-        //}       
+              
     },
     changeTokens: function(){
         let temp = game.tokenComp;
