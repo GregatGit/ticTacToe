@@ -25,14 +25,14 @@ var game = {
     centerTileFree: true,
     lineScores : [0, 0, 0, 0, 0, 0, 0, 0], // read above for lineScores & combos
     combos:  [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
+        [0, 1, 2], // -
+        [3, 4, 5], // -
+        [6, 7, 8], // -
+        [0, 3, 6], // |
+        [1, 4, 7], // |
+        [2, 5, 8], // |
+        [0, 4, 8], // \
+        [2, 4, 6]  // /
     ],
     tiles : [
         {
@@ -113,6 +113,7 @@ var handlers = {
                 marker = game.tokenComp;
             }
             document.getElementById(num).value = marker;
+            addLineScores(game.tiles[num].lineIndex, 5);
             game.moves++;
             return true;
         }else{
@@ -135,8 +136,9 @@ function computerMoves(){
         game.moves++;
     }
 }
-function addLineScores (arr, amount){
+function addLineScores (arr, amount){ // amount : 5 for user & 1 for comp
     arr.forEach(function (index){
         game.lineScores[index] += amount;
     });
+    console.log(game.lineScores);
 }
