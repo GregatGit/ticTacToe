@@ -134,10 +134,14 @@ var handlers = {
 };
 
 function computerMoves(){
-    if (game.centerTileFree){
-        game.centerTileFree = false;
+    if (game.moves < 2){
+        if (game.centerTileFree){
+            game.centerTileFree = false;
         handlers.checkThisTile(4, false);
-        //addLineScores(game.tiles[4].lineIndex, 1);
+        }else{
+            handlers.checkThisTile(0, false);
+        }
+        
     }else if (game.lineScores.indexOf(2) !== -1){ // first look for win
         let index = game.lineScores.indexOf(2);
         // find out which in the line 
