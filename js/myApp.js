@@ -106,16 +106,16 @@ var handlers = {
     checkThisTile: function(num, isPlayer){
         if (game.tiles[num].empty){
             game.tiles[num].empty = false; // not empty
-            let marker;
+            let marker, amount;
             if (isPlayer){
                 marker = game.tokenPlayer;
+                amount = 5;
             }else{
                 marker = game.tokenComp;
+                amount = 1;
             }
             document.getElementById(num).value = marker;
-            addLineScores(game.tiles[num].lineIndex, 5);
-            game.moves++;
-            return true;
+            addLineScores(game.tiles[num].lineIndex, amount);
         }else{
             return false;
         }
@@ -133,12 +133,28 @@ function computerMoves(){
     if (game.centerTileFree){
         game.centerTileFree = false;
         handlers.checkThisTile(4, false);
-        game.moves++;
+        //addLineScores(game.tiles[4].lineIndex, 1);
+    }else if (game.lineScores.indexOf(10) !== -1){ // first look for win
+        let index = game.lineScores.indexOf(10);
+        // find out which in the line 
+        index =  freeTile(game.combos[index]);
+        handlers.checkThisTile(index, false);
     }
 }
 function addLineScores (arr, amount){ // amount : 5 for user & 1 for comp
     arr.forEach(function (index){
         game.lineScores[index] += amount;
     });
-    console.log(game.lineScores);
+    game.moves++;
+    console.log(game.lineScores, 'count: ', game.moves);
+}
+// takes in arr of 3 tile and returns empty tile
+function freeTile (arr){
+    if (game.tiles[arr[0]].empty){
+        return game.tiles[arr[0]].id;
+    }else if (game.tiles[arr[1]].empty){
+        return game.tiles[arr[1]].id;
+    }else{
+        return game.tiles[arr[2]].id;
+    }
 }
