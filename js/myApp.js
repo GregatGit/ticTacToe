@@ -95,6 +95,7 @@ var handlers = {
             document.getElementById(i).value = '';
         }
         game.moves = 0;
+        game.centerTileFree = true;
         game.gameHasStarted = true;
         if (game.tokenPlayer === 'X'){
             game.playerCanMove = true;
@@ -106,6 +107,9 @@ var handlers = {
     checkThisTile: function(num, isPlayer){
         if (game.tiles[num].empty){
             game.tiles[num].empty = false; // not empty
+            if (num === 4){
+                game.centerTileFree = false;
+            }
             let marker, amount;
             if (isPlayer){
                 marker = game.tokenPlayer;
@@ -134,7 +138,12 @@ function computerMoves(){
         game.centerTileFree = false;
         handlers.checkThisTile(4, false);
         //addLineScores(game.tiles[4].lineIndex, 1);
-    }else if (game.lineScores.indexOf(10) !== -1){ // first look for win
+    }else if (game.lineScores.indexOf(2) !== -1){ // first look for win
+        let index = game.lineScores.indexOf(2);
+        // find out which in the line 
+        index =  freeTile(game.combos[index]);
+        handlers.checkThisTile(index, false);
+    }else if (game.lineScores.indexOf(10) !== -1){ // stop user from a win
         let index = game.lineScores.indexOf(10);
         // find out which in the line 
         index =  freeTile(game.combos[index]);
