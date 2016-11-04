@@ -152,6 +152,11 @@ function computerMoves(){
         // find out which in the line 
         index =  freeTile(game.combos[index]);
         handlers.checkThisTile(index, false);
+    }else if (game.lineScores.indexOf(1) !== -1){ // stop user from a win
+        let index = game.lineScores.indexOf(1);
+        // find out which in the line 
+        index =  freeTile(game.combos[index]);
+        handlers.checkThisTile(index, false);
     }
 }
 function addLineScores (arr, amount){ // amount : 5 for user & 1 for comp
