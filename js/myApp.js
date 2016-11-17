@@ -176,3 +176,7 @@ function freeTile (arr){
         return game.tiles[arr[2]].id;
     }
 }
+
+$("#email1").attr({
+    href: ("mailto:gregdd@outlook.com?subject=contact_from_website&body=Hello")
+  });
