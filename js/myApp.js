@@ -87,23 +87,12 @@ var game = {
 var handlers = {
     newGame: function(){
         game.tiles.forEach(function(tile, position){
-            //debugger;
             tile.empty = true;
             document.getElementById(position).value = '';
             if (position < 8){ // only 8 lineScores
                 game.lineScores[position] = 0;
             }
         });
-        // for (let i = 0; i < 9; i++){
-        //     game.tiles[i].empty = true;
-        //     //game.tiles[i].XorO = false;
-        //     if (i < 8){ // only 8 lineScores
-        //         game.lineScores[i] = 0;
-        //     }
-        //     document.getElementById(i).value = '';
-        // }
-        // for (var i = 0; i < game.lineScores.length; i++)
-        //     game.lineScores[i] = 0;
         game.moves = 0;
         game.centerTileFree = true;
         game.gameHasStarted = true;
