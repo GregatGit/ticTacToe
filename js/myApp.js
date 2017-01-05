@@ -19,9 +19,9 @@ the lineIndex property in each of tiles say which line the tile affects
 var game = {
     playerCanMove: false,
     gameHasStarted: false,
-    tokenPlayer: 'X ', // Player or Computer can change X and O 
-    tokenComp: 'O ',
     moves: 0,
+    tokenPlayer: 'X ', // Player or Computer can change X and O 
+    tokenComp: 'O ', 
     centerTileFree: true,
     lineScores : [0, 0, 0, 0, 0, 0, 0, 0], // read above for lineScores & combos
     combos:  [
@@ -83,6 +83,17 @@ var game = {
         }
     ]
 };
+
+view = {
+    displayGame: function() {
+        //updates the html
+        game.tiles.forEach(function(tile, position){
+            var marker = 'T';
+            
+            document.getElementById(position).value = marker;
+        });
+    }
+}
 
 var handlers = {
     newGame: function(){
