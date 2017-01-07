@@ -17,7 +17,7 @@ the lineIndex property in each of tiles say which line the tile affects
 */
 
 var game = {
-    playerCanMove: false,
+    playerCanMove: true,
     gameHasStarted: false,
     moves: 0,
     tokenPlayer: 'X ', // Player or Computer can change X and O 
@@ -73,68 +73,36 @@ var game = {
         }, {
         id: 7,
         empty: true,
-        text: 'O',
+        text: '',
         lineIndex: [2, 4]
         }, {
         id: 8,
         empty: true,
-        text: 'X',
+        text: '',
         lineIndex: [2, 5, 6]
         }
     ],
     newGame: function() {
-        game.tiles.forEach(function(tile, position){
+        this.tiles.forEach(function(tile, position){
             tile.empty = true;
-            document.getElementById(position).value = '';
+            tile.text = '';
             if (position < 8){ // only 8 lineScores
                 game.lineScores[position] = 0;
             }
         });
-        game.moves = 0;
-        game.centerTileFree = true;
-        game.gameHasStarted = true;
-        if (game.tokenPlayer === 'X'){
-            game.playerCanMove = true;
-        }else{
-            game.playerCanMove = false;
-            // computers turn 
-        }
-    }
-};
-
-view = {
-    displayAllTiles: function() {
-        //updates the html
-        game.tiles.forEach(function(tile, position){        
-            document.getElementById(position).value = tile.text;
-        });
-    },
-    displayOneTile: function(index){
-        document.getElementById(index).value = game.tiles[index].text;
-    }
-}
-
-var handlers = {
-    newGame: function(){
-        game.newGame();
-        // game.tiles.forEach(function(tile, position){
-        //     tile.empty = true;
-        //     document.getElementById(position).value = '';
-        //     if (position < 8){ // only 8 lineScores
-        //         game.lineScores[position] = 0;
-        //     }
-        // });
-        // game.moves = 0;
-        // game.centerTileFree = true;
-        // game.gameHasStarted = true;
-        // if (game.tokenPlayer === 'X'){
-        //     game.playerCanMove = true;
+        this.moves = 0;
+        this.centerTileFree = true;
+        this.gameHasStarted = true;
+        // if (this.tokenPlayer === 'X'){
+        //     this.playerCanMove = true;
         // }else{
-        //     game.playerCanMove = false;
+        //     this.playerCanMove = false;
         //     // computers turn 
         // }
+        view.displayAllTiles();
     },
     checkThisTile: function(num, isPlayer){
+        var self = this;
         if (game.tiles[num].empty){
             game.tiles[num].empty = false; // not empty
             if (num === 4){
@@ -148,11 +116,52 @@ var handlers = {
                 marker = game.tokenComp;
                 amount = 1;
             }
-            document.getElementById(num).value = marker;
+            // document.getElementById(num).value = marker;
+            view.displayOneTile(num, game.tokenPlayer);
             addLineScores(game.tiles[num].lineIndex, amount);
-        }else{
-            return false;
+        }     
+    }
+};
+
+view = {
+    displayAllTiles: function() {
+        //updates the html
+        game.tiles.forEach(function(tile, position){        
+            document.getElementById(position).value = tile.text;
+        });
+    },
+    displayOneTile: function(index, token){
+        //document.getElementById(index).value = game.tiles[index].text;
+        document.getElementById(index).value = token;
+    }
+}
+
+var handlers = {
+    newGame: function(){
+        game.newGame();
+    },
+    checkThisTile: function(index){
+        if (game.gameHasStarted && game.playerCanMove){
+            game.checkThisTile(index, true);
         }
+        // if (game.tiles[num].empty){
+        //     game.tiles[num].empty = false; // not empty
+        //     if (num === 4){
+        //         game.centerTileFree = false;
+        //     }
+        //     let marker, amount;
+        //     if (isPlayer){
+        //         marker = game.tokenPlayer;
+        //         amount = 5;
+        //     }else{
+        //         marker = game.tokenComp;
+        //         amount = 1;
+        //     }
+        //     document.getElementById(num).value = marker;
+        //     addLineScores(game.tiles[num].lineIndex, amount);
+        // }else{
+        //     return false;
+        // }
               
     },
     changeTokens: function(){
