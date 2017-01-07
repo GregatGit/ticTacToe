@@ -38,65 +38,51 @@ var game = {
         {
         id: 0,
         empty: true,
-        XorO: false,
+        text: '',
         lineIndex: [0, 3, 6]
         }, {
         id: 1,
         empty: true,
-        XorO: false,
+        text: '',
         lineIndex: [0, 4]
         }, {
         id: 2,
         empty: true,
-        XorO: false,
+        text: '',
         lineIndex: [0, 5, 7]
         }, {
         id: 3,
         empty: true,
-        XorO: false,
+        text: '',
         lineIndex: [1, 3]
         }, {
         id: 4,
         empty: true,
-        XorO: false,
+        text: '',
         lineIndex: [1, 4, 6, 7]
         }, {
         id: 5,
         empty: true,
-        XorO: false,
+        text: '',
         lineIndex: [1, 5]
         }, {
         id: 6,
         empty: true,
-        XorO: false,
+        text: '',
         lineIndex: [2, 3, 7]
         }, {
         id: 7,
         empty: true,
-        XorO: false,
+        text: 'O',
         lineIndex: [2, 4]
         }, {
         id: 8,
         empty: true,
-        XorO: false,
+        text: 'X',
         lineIndex: [2, 5, 6]
         }
-    ]
-};
-
-view = {
-    displayGame: function() {
-        //updates the html
-        game.tiles.forEach(function(tile, position){
-            var marker = 'T';
-            
-            document.getElementById(position).value = marker;
-        });
-    }
-}
-
-var handlers = {
-    newGame: function(){
+    ],
+    newGame: function() {
         game.tiles.forEach(function(tile, position){
             tile.empty = true;
             document.getElementById(position).value = '';
@@ -113,6 +99,40 @@ var handlers = {
             game.playerCanMove = false;
             // computers turn 
         }
+    }
+};
+
+view = {
+    displayAllTiles: function() {
+        //updates the html
+        game.tiles.forEach(function(tile, position){        
+            document.getElementById(position).value = tile.text;
+        });
+    },
+    displayOneTile: function(index){
+        document.getElementById(index).value = game.tiles[index].text;
+    }
+}
+
+var handlers = {
+    newGame: function(){
+        game.newGame();
+        // game.tiles.forEach(function(tile, position){
+        //     tile.empty = true;
+        //     document.getElementById(position).value = '';
+        //     if (position < 8){ // only 8 lineScores
+        //         game.lineScores[position] = 0;
+        //     }
+        // });
+        // game.moves = 0;
+        // game.centerTileFree = true;
+        // game.gameHasStarted = true;
+        // if (game.tokenPlayer === 'X'){
+        //     game.playerCanMove = true;
+        // }else{
+        //     game.playerCanMove = false;
+        //     // computers turn 
+        // }
     },
     checkThisTile: function(num, isPlayer){
         if (game.tiles[num].empty){
