@@ -17,9 +17,10 @@ the lineIndex property in each of tiles say which line the tile affects
 */
 
 var game = {
-    playerCanMove: true,
+    playerCanMove: false,
     gameHasStarted: false,
     moves: 0,
+    usedTiles: [],
     tokenPlayer: 'X ', // Player or Computer can change X and O 
     tokenComp: 'O ',
     centerTileFree: true,
@@ -32,7 +33,7 @@ var game = {
         [1, 4, 7], // |
         [2, 5, 8], // |
         [0, 4, 8], // \
-        [2, 4, 6] // /
+        [2, 4, 6]  // /
     ],
     tiles: [{
         empty: true,
@@ -72,6 +73,7 @@ var game = {
         lineIndex: [2, 5, 6]
     }],
     newGame: function () {
+        game.playerCanMove = true;
         this.tiles.forEach(function (tile, position) {
             tile.empty = true;
             tile.text = '';
@@ -82,12 +84,7 @@ var game = {
         this.moves = 0;
         this.centerTileFree = true;
         this.gameHasStarted = true;
-        // if (this.tokenPlayer === 'X'){
-        //     this.playerCanMove = true;
-        // }else{
-        //     this.playerCanMove = false;
-        //     // computers turn 
-        // }
+        this.usedTiles.length = 0;
         view.displayAllTiles();
     },
     checkThisTile: function (num, isPlayer) {
@@ -104,8 +101,9 @@ var game = {
                 marker = game.tokenComp;
                 amount = 1;
             }
-            view.displayOneTile(num, game.tokenPlayer);
+            view.displayOneTile(num, marker);
             game.addLineScores(game.tiles[num].lineIndex, amount);
+            game.usedTiles.push(num);
         }
     },
     addLineScores: function (arr, amount) { // amount : 5 for user & 1 for comp
@@ -114,6 +112,7 @@ var game = {
         });
         game.moves++;
         console.log(game.lineScores, 'count: ', game.moves);
+        console.log('usedTiles: ', game.usedTiles);
     },
     changeTokens: function () {
         let temp = game.tokenComp;
@@ -125,7 +124,6 @@ var game = {
 
 view = {
     displayAllTiles: function () {
-        //updates the html
         game.tiles.forEach(function (tile, position) {
             document.getElementById(position).value = tile.text;
         });
@@ -145,7 +143,6 @@ var handlers = {
         }
     },
     changeTokens: function () {
-        myTest();
         game.changeTokens();
     }
 };

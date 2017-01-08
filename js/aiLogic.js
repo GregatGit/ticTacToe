@@ -20,28 +20,32 @@ var ai = {
         } else if (game.lineScores.indexOf(2) !== -1) { // first look for win
             let index = game.lineScores.indexOf(2);
             // find out which in the line 
-            index = freeTile(game.combos[index]);
-            game.checkThisTile(index, false);
+            index = ai.freeTile(game.combos[index]);
+            game.checkThisTile(index);
         } else if (game.lineScores.indexOf(10) !== -1) { // stop user from a win
             let index = game.lineScores.indexOf(10);
             // find out which in the line 
-            index = freeTile(game.combos[index]);
-            game.checkThisTile(index, false);
-        } else if (game.lineScores.indexOf(1) !== -1) { // stop user from a win
-            let index = game.lineScores.indexOf(1);
-            // find out which in the line 
-            index = freeTile(game.combos[index]);
-            game.checkThisTile(index, false);
+            index = ai.freeTile(game.combos[index]);
+            game.checkThisTile(index);
+        // } else if (game.lineScores.indexOf(1) !== -1) { // stop user from a win
+        //     let index = game.lineScores.indexOf(1);
+        //     // find out which in the line 
+        //     index = ai.freeTile(game.combos[index]);
+        //     game.checkThisTile(index);
+        } else{
+            let index;
+            do {
+                index = Math.floor((Math.random() * 9) + 0);
+            } while (game.usedTiles.indexOf(index) !== -1);
+            game.checkThisTile(index);
         }
     },
-    freeTile: function (arr, objArr) {
-        let index;
-        if (objArr[arr[0]].empty)
-            index = arr[0];
-        else if (objArr[arr[1]].empty)
-            index = arr[1];
+    freeTile: function (arr) {
+        if (game.tiles[arr[0]].empty)
+            return arr[0];
+        else if (game.tiles[arr[1]].empty)
+            return arr[1];
         else
-            index = arr[2];
-        return index;
+            return arr[2];
     }
 };
