@@ -21,8 +21,8 @@ var game = {
     gameHasStarted: false,
     moves: 0,
     usedTiles: [],
-    tokenPlayer: 'X ', // Player or Computer can change X and O 
-    tokenComp: 'O ',
+    tokenPlayer: 'X', // Player or Computer can change X and O 
+    tokenComp: 'O',
     centerTileFree: true,
     lineScores: [0, 0, 0, 0, 0, 0, 0, 0], // read above for lineScores & combos
     combos: [
@@ -86,6 +86,9 @@ var game = {
         this.gameHasStarted = true;
         this.usedTiles.length = 0;
         view.displayAllTiles();
+        if (game.tokenComp === 'X'){
+            ai.computerMoves();
+        }
     },
     checkThisTile: function (num, isPlayer) {
         if (game.tiles[num].empty) {
@@ -104,6 +107,9 @@ var game = {
             view.displayOneTile(num, marker);
             game.addLineScores(game.tiles[num].lineIndex, amount);
             game.usedTiles.push(num);
+            if (isPlayer){
+                ai.computerMoves();
+            }
         }
     },
     addLineScores: function (arr, amount) { // amount : 5 for user & 1 for comp

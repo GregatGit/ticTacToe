@@ -1,8 +1,5 @@
 // 
 console.log(game);
-function myTest(){
-    console.log('AI');
-}
 
 var ai = {
     // takes in arr of 3 tile and returns empty tile
