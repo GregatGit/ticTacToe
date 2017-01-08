@@ -35,47 +35,38 @@ var game = {
         [2, 4, 6] // /
     ],
     tiles: [{
-        id: 0,
         empty: true,
         text: '',
         lineIndex: [0, 3, 6]
     }, {
-        id: 1,
         empty: true,
         text: '',
         lineIndex: [0, 4]
     }, {
-        id: 2,
         empty: true,
         text: '',
         lineIndex: [0, 5, 7]
     }, {
-        id: 3,
         empty: true,
         text: '',
         lineIndex: [1, 3]
     }, {
-        id: 4,
         empty: true,
         text: '',
         lineIndex: [1, 4, 6, 7]
     }, {
-        id: 5,
         empty: true,
         text: '',
         lineIndex: [1, 5]
     }, {
-        id: 6,
         empty: true,
         text: '',
         lineIndex: [2, 3, 7]
     }, {
-        id: 7,
         empty: true,
         text: '',
         lineIndex: [2, 4]
     }, {
-        id: 8,
         empty: true,
         text: '',
         lineIndex: [2, 5, 6]
@@ -100,7 +91,6 @@ var game = {
         view.displayAllTiles();
     },
     checkThisTile: function (num, isPlayer) {
-        var self = this;
         if (game.tiles[num].empty) {
             game.tiles[num].empty = false; // not empty
             if (num === 4) {
@@ -115,7 +105,7 @@ var game = {
                 amount = 1;
             }
             view.displayOneTile(num, game.tokenPlayer);
-            addLineScores(game.tiles[num].lineIndex, amount);
+            game.addLineScores(game.tiles[num].lineIndex, amount);
         }
     },
     addLineScores: function (arr, amount) { // amount : 5 for user & 1 for comp
@@ -124,6 +114,12 @@ var game = {
         });
         game.moves++;
         console.log(game.lineScores, 'count: ', game.moves);
+    },
+    changeTokens: function () {
+        let temp = game.tokenComp;
+        game.tokenComp = game.tokenPlayer;
+        game.tokenPlayer = temp;
+        document.getElementById('XandO').innerText = game.tokenPlayer;
     }
 };
 
@@ -149,10 +145,8 @@ var handlers = {
         }
     },
     changeTokens: function () {
-        let temp = game.tokenComp;
-        game.tokenComp = game.tokenPlayer;
-        game.tokenPlayer = temp;
-        document.getElementById('XandO').innerText = game.tokenPlayer;
+        myTest();
+        game.changeTokens();
     }
 };
 
