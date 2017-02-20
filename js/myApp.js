@@ -152,7 +152,3 @@ var handlers = {
         game.changeTokens();
     }
 };
-
-$("#email1").attr({
-    href: ("mailto:gregdd@outlook.com?subject=contact_from_TICTACTOE&body=Hello")
-});
