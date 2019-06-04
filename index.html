@@ -1,58 +1,65 @@
-<!DOCTYPE <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Tic Tac Toe</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
-    
-    
-    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
-<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="en" >
 
-    <div class="container" >
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe 3</title>
+  <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <div class="container" >
   <div class='jumbotron' style='background:#A20932;'>
   <div class="row" id="title"><h1>TIC-TAC-TOE</h1></div>
     <div class='row'><h4>A <a href="https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-game" target='_blank'>freeCodeCamp Challenge</a> <br> by Greg Duncan</h4></div>
-    <div id="tiles">
-        <div class="row" id="row1">
-    <input readonly id="0" onclick="handlers.checkThisTile(0)"></input>
-    <input readonly id="1" onclick="handlers.checkThisTile(1)"></input>
-    <input readonly id="2" onclick="handlers.checkThisTile(2)"></input>
+  <div class="row" id="row1">
+    <input readonly id="zero"></input>
+    <input readonly id="one"></input>
+    <input readonly id="two"></input>
   </div>
   <div class="row" id="row2">
-    <input readonly id="3" onclick="handlers.checkThisTile(3)"></input>
-    <input readonly id="4" onclick="handlers.checkThisTile(4)"></input>
-    <input readonly id="5" onclick="handlers.checkThisTile(5)"></input>
+    <input readonly id="three"></input>
+    <input readonly id="four"></input>
+    <input readonly id="five"></input>
   </div>
   <div class="row" id="row3">
-    <input readonly id="6" onclick="handlers.checkThisTile(6)"></input>
-    <input readonly id="7" onclick="handlers.checkThisTile(7)"></input>
-    <input readonly id="8" onclick="handlers.checkThisTile(8)"></input>
+    <input readonly id="six"></input>
+    <input readonly id="seven"></input>
+    <input readonly id="eight"></input>
   </div>
-    </div>
   <div>
-    <button class='btn btn-success btn-md' id='playerLetter' data-toggle="tooltip" title="X GOES FIRST" data-placement="bottom" onclick="handlers.changeTokens()"><span id="XandO">X </span><i class="fa fa-refresh" aria-hidden="true" ></i> </button>
-    <button class='btn btn-primary btn-md' id="newGame" onclick="handlers.newGame()">New Game</button>
+    <button class='btn btn-success btn-md' id='playerLetter' data-toggle="tooltip" title="X GOES FIRST" data-placement="bottom">X <i class="fa fa-refresh" aria-hidden="true" ></i> </button>
+    <button class='btn btn-primary btn-md' id="newGame">New Game</button>
   </div>
   </div>
 <div id='turns'></div>
 </div>
 <div id="myfooter" class="container-fluid footerclass">
   <div class="row" style="margin-top:18px;">
-    <p><a href="#"><i class="fa fa-twitter fa-3x"></i></a><a href="https://github.com/GregatGit" target="_blank"><i class="fa fa-github fa-3x"></i></a>
-      <a href="https://www.linkedin.com/pub/greg-duncan/108/199/458" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a><a href="http://www.freecodecamp.com/gregatgit" target="_blank"><i class="fa fa-free-code-camp fa-3x" target="_blank"></i></a>
+    <p><a href="https://codepen.io/gregoverhere/" target="_blank"><i class="fa fa-codepen fa-3x"></i></a><a href="https://github.com/GregatGit" target="_blank"><i class="fa fa-github fa-3x"></i></a>
+      <a href="https://www.linkedin.com/pub/greg-duncan/108/199/458" target="_blank"><i class="fa fa-linkedin fa-3x"></i></a><a href="https://www.freecodecamp.com/gregatgit" target="_blank"><i class="fa fa-fire fa-3x" target="_blank"></i></a>
     </p>
-    <p><a id="emailMe" href="mailto:gregdd@outlook.com?subject=Contact%20from%20Tic-TacToe">e-mail me</a></p>
+    <p><a id="email">gregdd@outlook.com</a></p>
   </div>
 </div>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
 
-        <script src="js/myApp.js"></script>
-        <script src="js/aiLogic.js"></script>
-  </body>
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
 </html>
